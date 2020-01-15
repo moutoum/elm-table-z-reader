@@ -1,10 +1,13 @@
 module Model exposing (..)
 
 import File exposing (File)
+import ZTable exposing (ZTable)
 
 
 type alias Model =
     { ztable : Maybe ZTable
+    , content : String
+    , searchedValue : Maybe Float
     }
 
 
@@ -12,12 +15,10 @@ type Msg
     = CsvRequested
     | CsvSelected File
     | CsvLoaded String
-
-
-type alias ZTable =
-    List ( Float, Float )
+    | OnContentChanged String
+    | SearchPValue
 
 
 init : () -> ( Model, Cmd Msg )
 init _ =
-    ( Model Nothing, Cmd.none )
+    ( Model Nothing "" Nothing, Cmd.none )
