@@ -44,8 +44,9 @@ mainPage model =
                 [ Grid.col [ Col.xs9 ]
                     [ Form.form []
                         [ Form.row []
-                            [ Form.col [ Col.xs9 ] [ Input.text [ Input.placeholder "P value", Input.onInput OnContentChanged ] ]
-                            , Form.col [ Col.xs3 ] [ Button.button [ Button.primary, Button.onClick SearchPValue, Button.block ] [ text "Search" ] ]
+                            [ Form.col [ Col.xs6 ] [ Input.text [ Input.placeholder "Valeur à rechercher", Input.onInput OnContentChanged, Input.value model.content ] ]
+                            , Form.col [ Col.xs3 ] [ Button.button [ Button.primary, Button.onClick SearchPValue, Button.block ] [ text "Rechercher P" ] ]
+                            , Form.col [ Col.xs3 ] [ Button.button [ Button.primary, Button.onClick SearchZValue, Button.block ] [ text "Rechercher Z" ] ]
                             ]
                         ]
                     , searchedValueView model.searchedValue

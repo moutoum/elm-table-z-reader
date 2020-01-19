@@ -6,7 +6,7 @@ import File.Select
 import Model exposing (Model, Msg(..))
 import Task
 import Utils exposing (convertTuple2StringToTuple2Float, tuple2)
-import ZTable exposing (findp)
+import ZTable exposing (findp, findz)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -50,9 +50,23 @@ update msg model =
                         _ ->
                             Nothing
             in
-            ( { model
-                | searchedValue = searchedValue
-                , content = ""
-              }
+            ( { model | searchedValue = searchedValue, content = "" }
+            , Cmd.none
+            )
+
+        SearchZValue ->
+            let
+                number =
+                    String.toFloat model.content
+
+                searchedValue =
+                    case ( number, model.ztable ) of
+                        ( Just p, Just table ) ->
+                            findz p table
+
+                        _ ->
+                            Nothing
+            in
+            ( { model | searchedValue = searchedValue, content = "" }
             , Cmd.none
             )

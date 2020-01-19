@@ -17,6 +17,7 @@ type Msg
     | CsvLoaded String
     | OnContentChanged String
     | SearchPValue
+    | SearchZValue
 
 
 init : () -> ( Model, Cmd Msg )
