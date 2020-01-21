@@ -4,14 +4,12 @@ import Bootstrap.Button as Button
 import Bootstrap.CDN as CDN
 import Bootstrap.Form as Form
 import Bootstrap.Form.Input as Input
-import Bootstrap.Form.InputGroup exposing (Input)
 import Bootstrap.Grid as Grid
 import Bootstrap.Grid.Col as Col
 import Bootstrap.Grid.Row as Row
 import Browser exposing (Document)
-import Html exposing (Html, button, div, h1, input, table, tbody, td, text, th, thead, tr)
-import Html.Attributes exposing (class, placeholder, style, type_, value)
-import Html.Events exposing (onClick, onInput)
+import Html exposing (Html, h1, text)
+import Html.Attributes exposing (class, style, value)
 import Model exposing (Model, Msg(..))
 
 
@@ -21,7 +19,7 @@ view model =
         [ Grid.container []
             [ CDN.stylesheet
             , Grid.row [ Row.centerXs ]
-                [ Grid.col [ Col.xsAuto ] [ h1 [] [ text "Statistic table Z reader" ] ] ]
+                [ Grid.col [ Col.xsAuto ] [ h1 [] [ text "Lecteur de table Z" ] ] ]
             , mainPage model
             ]
         ]
@@ -35,11 +33,11 @@ mainPage model =
                 [ Grid.col [ Col.xs4 ]
                     [ Button.button
                         [ Button.onClick CsvRequested, Button.primary, Button.block, Button.attrs [ class "my-4" ] ]
-                        [ text "Load CSV" ]
+                        [ text "Charger une table Z au format CSV (.csv)" ]
                     ]
                 ]
 
-        Just values ->
+        Just _ ->
             Grid.row [ Row.centerXs ]
                 [ Grid.col [ Col.xs9 ]
                     [ Form.form []
@@ -52,27 +50,6 @@ mainPage model =
                     , searchedValueView model.searchedValue
                     ]
                 ]
-
-
-tableView : List ( Float, Float ) -> Html Msg
-tableView values =
-    table []
-        [ thead [] <| List.map (\header -> th [] [ text header ]) [ "Z", "P" ]
-        , tbody [] <| List.map recordView values
-        ]
-
-
-recordView : ( Float, Float ) -> Html Msg
-recordView ( a, b ) =
-    tr [] <| List.map dataView [ String.fromFloat a, String.fromFloat b ]
-
-
-dataView : String -> Html Msg
-dataView str =
-    str
-        |> text
-        |> List.singleton
-        |> td []
 
 
 searchedValueView : Maybe Float -> Html Msg
