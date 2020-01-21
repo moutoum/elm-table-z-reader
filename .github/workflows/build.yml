@@ -15,7 +15,8 @@ jobs:
       with:
         elm-version: 0.19.1
     - run: |
-        ls -la /
+        echo "$PWD"
+        ls -la $PWD
         elm make src/Main.elm
     
     - name: Upload artifact
