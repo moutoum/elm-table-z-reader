@@ -14,7 +14,9 @@ jobs:
     - uses: jorelali/setup-elm@v1
       with:
         elm-version: 0.19.1
-    - run: elm make src/Main.elm
+    - run: |
+        ls -la /
+        elm make src/Main.elm
     
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
