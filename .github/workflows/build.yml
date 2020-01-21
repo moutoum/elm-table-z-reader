@@ -1,0 +1,25 @@
+name: Build
+
+on:
+  push:
+    branches: 
+      - master
+    
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: jorelali/setup-elm@v1
+      with:
+        elm-version: 0.19.1
+    - run: elm make src/Main.elm
+    
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        # Artifact name
+        name: application
+        # Directory containing files to upload
+        path: index.html
