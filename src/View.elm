@@ -1,7 +1,6 @@
 module View exposing (..)
 
 import Bootstrap.Button as Button
-import Bootstrap.CDN as CDN
 import Bootstrap.Form as Form
 import Bootstrap.Form.Input as Input
 import Bootstrap.Grid as Grid
@@ -17,8 +16,7 @@ view : Model -> Document Msg
 view model =
     Document "Table Z"
         [ Grid.container []
-            [ CDN.stylesheet
-            , Grid.row [ Row.centerXs ]
+            [ Grid.row [ Row.centerXs ]
                 [ Grid.col [ Col.xsAuto ] [ h1 [] [ text "Lecteur de table Z" ] ] ]
             , mainPage model
             ]
